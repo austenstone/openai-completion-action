@@ -31,6 +31,6 @@ jobs:
             await github.rest.issues.addLabels({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              issue_number: issue_number,
+              issue_number: context.payload.issue.number,
               labels: text.split(',').map(l => l.trim())
             });
