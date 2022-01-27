@@ -10,16 +10,16 @@ const getCoreInput = (name) => {
 const engineId = getCoreInput('engineId') || 'text-davinci-001';
 const prompt = getCoreInput('prompt');
 const max_tokens = parseInt(getCoreInput('max_tokens'));
-const temperature = getCoreInput('temperature');
-const top_p = getCoreInput('top_p');
-const n = getCoreInput('n');
-const stream = getCoreInput('stream');
-const logprobs = getCoreInput('logprobs');
-const echo = getCoreInput('echo');
+const temperature = parseInt(getCoreInput('temperature'));
+const top_p = parseInt(getCoreInput('top_p'));
+const n = parseInt(getCoreInput('n'));
+const stream = Boolean(getCoreInput('stream'));
+const logprobs = parseInt(getCoreInput('logprobs'));
+const echo = Boolean(getCoreInput('echo'));
 const stop = getCoreInput('stop');
-const presence_penalty = getCoreInput('presence_penalty');
-const frequency_penalty = getCoreInput('frequency_penalty');
-const best_of = getCoreInput('best_of');
+const presence_penalty = parseInt(getCoreInput('presence_penalty'));
+const frequency_penalty = parseInt(getCoreInput('frequency_penalty'));
+const best_of = parseInt(getCoreInput('best_of'));
 const logit_bias = getCoreInput('logit_bias');
 
 if (!prompt) {
