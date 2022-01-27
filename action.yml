@@ -1,5 +1,6 @@
 name: "OpenAI Completion Action"
 description: "Input some text as a prompt, and the model will generate a text completion that attempts to match whatever context or pattern you gave it."
+
 inputs:
   prompt:
     description: >
@@ -47,9 +48,11 @@ inputs:
 outputs:
   response:
     description: "The completion response for the provided prompt and parameters"
+    
 runs:
   using: "node12"
   main: "index.js"
+  
 branding:
   icon: "activity"
   color: "green"
