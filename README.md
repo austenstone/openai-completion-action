@@ -43,5 +43,5 @@ jobs:
           script: |
             core.notice(`${{github.event.inputs.prompt}}
 
-            ${JSON.parse('${{ steps.openai_completion.outputs.response }}').choices[0].text})
+            ${JSON.parse('${{ steps.openai_completion.outputs.response }}').choices[0].text}`)
 ```
