@@ -1,5 +1,5 @@
-name: "Changelog Query"
-description: "Validate the changelog file and extract current release information"
+name: "OpenAI Completion Action"
+description: "Input some text as a prompt, and the model will generate a text completion that attempts to match whatever context or pattern you gave it."
 inputs:
   prompt:
     description: >
