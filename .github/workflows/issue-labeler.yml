@@ -1,0 +1,32 @@
+name: "OpenAI Issue Labeler"
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  openai_completion_job:
+    runs-on: ubuntu-latest
+    name: OpenAI
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./
+        name: OpenAI Completion
+        id: openai_completion
+        with:
+          prompt: "${{ github.context.payload.issue.body }}"
+          max_tokens: 64
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+
+      - uses: actions/github-script@v5
+        name: Print the response text
+        with:
+          script: >
+            const text = '${{github.event.inputs.prompt}}' + '\n\n' + JSON.parse('${{ steps.openai_completion.outputs.response }}').choices[0].text;
+            core.notice(text)      
+            await client.issues.addLabels({
+              owner: github.context.repo.owner,
+              repo: github.context.repo.repo,
+              issue_number: issue_number,
+              labels: text.split(',').map(l => l.trim())
+            });
