@@ -28,7 +28,7 @@ jobs:
           script: |
             const text = '${{github.event.inputs.prompt}}' + '\n\n' + JSON.parse('${{ steps.openai_completion.outputs.response }}').choices[0].text;
             core.notice(text)      
-            await client.issues.addLabels({
+            await github.rest.issues..addLabels({
               owner: github.context.repo.owner,
               repo: github.context.repo.repo,
               issue_number: issue_number,
