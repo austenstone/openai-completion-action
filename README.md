@@ -40,5 +40,5 @@ jobs:
       - uses: actions/github-script@v5
         name: Print the response text
         with:
-          script: core.info(JSON.parse('${{ steps.openai_completion.outputs.response }}').choices[0].text)
+          script: core.notice(JSON.parse('${{ steps.openai_completion.outputs.response }}').choices[0].text)
 ```
