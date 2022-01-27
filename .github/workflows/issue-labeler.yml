@@ -32,5 +32,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.payload.issue.number,
-              labels: text.split(',').map(l => l.trim())
+              labels: text.split(',').map(l => l.trim()).filter(l => l.length < 1)
             });
