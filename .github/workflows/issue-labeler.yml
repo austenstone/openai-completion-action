@@ -17,7 +17,7 @@ jobs:
             Title: ${{ github.payload.title }}
             Body: ${{ github.payload.issue.body }}
             Possible Labels: database,api,ui,needs help,critical,permission,new feature,bug,cleanup
-            Given the possible labels what are the best labels for the Tile and Body?
+            Given the possible labels what are the best labels for the Tile and Body in a csv list?
           max_tokens: 5
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
