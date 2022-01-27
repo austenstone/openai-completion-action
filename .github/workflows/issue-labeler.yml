@@ -17,8 +17,8 @@ jobs:
         id: openai_completion
         with:
           prompt: >
-            Title: ${{ github.event.title//$'\n'/'%0A' }}
-            Body: ${{ github.event.issue.body//$'\n'/'%0A' }}
+            Title: ${{ github.event.title }}
+            Body: ${{ github.event.issue.body }}
             Possible Labels: database,api,ui,needs-help,critical,permission,new-feature,bug,cleanup,algo,funny,idea
             Given the Possible Labels what are the best 3 labels for the Tile and Body in a csv list?
           max_tokens: 5
