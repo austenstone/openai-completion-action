@@ -54,5 +54,5 @@ runs:
   main: "index.js"
   
 branding:
-  icon: "activity"
+  icon: "box"
   color: "green"
