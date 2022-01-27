@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     name: OpenAI
     steps:
-      - uses: austenstone/openai-completion-action@master
+      - uses: austenstone/openai-completion-action@main
         name: OpenAI Completion
         id: openai_completion
         with:

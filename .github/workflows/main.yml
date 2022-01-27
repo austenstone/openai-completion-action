@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     name: OpenAI
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v2
       - uses: ./
         name: OpenAI Completion
         id: openai_completion
