@@ -41,7 +41,7 @@ jobs:
         name: Print the response text
         with:
           script: |
-            core.notice(`${{github.event.inputs.prompt}}
+            core.notice(`test
 
             ${JSON.parse('${{ steps.openai_completion.outputs.response }}').choices[0].text}`)
 ```
