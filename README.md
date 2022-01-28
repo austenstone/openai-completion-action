@@ -82,3 +82,6 @@ jobs:
               labels: text.split(',').map(l => l.trim()).filter(l => l.length > 0)
             });
 ```
+See examples on the [issues](https://github.com/austenstone/openai-completion-action/issues) tab.
+
+![image](https://user-images.githubusercontent.com/22425467/151470678-7f59d9ca-405a-4ed6-ae44-7cbca133033c.png)
