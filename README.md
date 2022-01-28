@@ -43,7 +43,10 @@ jobs:
           script:  console.log(JSON.parse('${{ steps.openai_completion.outputs.response }}').choices[0].text)
 ```
 
-## [Example 1](https://github.com/austenstone/openai-completion-action/blob/main/.github/workflows/issue-labeler.yml)
+## Examples
+Below are some example use cases.
+
+### [Assigning Labels to Issues](https://github.com/austenstone/openai-completion-action/blob/main/.github/workflows/issue-labeler.yml)
 Using the prompt to automatically assign labels to an issue when it's opened.
 
 ```yml
