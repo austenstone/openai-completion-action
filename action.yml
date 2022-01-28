@@ -48,11 +48,11 @@ inputs:
 outputs:
   response:
     description: "The completion response for the provided prompt and parameters"
-    
+
 runs:
   using: "node12"
   main: "index.js"
-  
+
 branding:
-  icon: "box"
+  icon: "arrow-up-circle"
   color: "green"
