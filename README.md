@@ -60,11 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     name: OpenAI
     steps:
-      - name: Dump GitHub context
-        id: github_context_step
-        run: echo '${{ toJSON(github) }}'
-      - uses: actions/checkout@v2
-      - uses: ./
+      - uses: austenstone/openai-completion-action@main
         name: OpenAI Completion
         id: openai_completion
         with:
