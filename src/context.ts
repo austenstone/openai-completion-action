@@ -16,9 +16,9 @@ const run = async (): Promise<void> => {
     presence_penalty: parseInt(core.getInput('presence_penalty')) || undefined,
     frequency_penalty: parseInt(core.getInput('frequency_penalty')) || undefined,
     best_of: parseInt(core.getInput('best_of')) || undefined,
-    logit_bias: ((logit_bias) => {
+    logit_bias: ((lb) => {
       try {
-        JSON.parse(logit_bias)
+        return JSON.parse(lb);
       } catch (e) {
         return undefined;
       }

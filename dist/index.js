@@ -47,14 +47,20 @@ const run = () => __awaiter(void 0, void 0, void 0, function* () {
         n: parseInt(core.getInput('n')) || undefined,
         stream: core.getInput('echo') ? Boolean(core.getInput('stream')) : undefined,
         logprobs: parseInt(core.getInput('logprobs')) || undefined,
-        echo: core.getInput('echo') ? Boolean(core.getInput('echo')) : undefined,
+        echo: core.getInput('echo').length < 1 ? Boolean(core.getInput('echo')) : undefined,
         stop: core.getInput('stop'),
         presence_penalty: parseInt(core.getInput('presence_penalty')) || undefined,
         frequency_penalty: parseInt(core.getInput('frequency_penalty')) || undefined,
         best_of: parseInt(core.getInput('best_of')) || undefined,
-        logit_bias: JSON.parse(core.getInput('logit_bias')) || undefined,
+        logit_bias: ((lb) => {
+            try {
+                return JSON.parse(lb);
+            }
+            catch (e) {
+                return undefined;
+            }
+        })(core.getInput('logit_bias')),
     };
-    console.log('payload', payload);
     if (!prompt) {
         core.setFailed('No prompt provided');
         return;
