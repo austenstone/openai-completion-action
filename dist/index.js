@@ -39,19 +39,21 @@ const core = __importStar(__nccwpck_require__(2186));
 const openai_1 = __nccwpck_require__(9211);
 const run = () => __awaiter(void 0, void 0, void 0, function* () {
     const engineId = core.getInput('engineId') || 'text-davinci-001';
-    const prompt = core.getInput('prompt');
-    const max_tokens = parseInt(core.getInput('max_tokens')) || undefined;
-    const temperature = parseInt(core.getInput('temperature')) || undefined;
-    const top_p = parseInt(core.getInput('top_p')) || undefined;
-    const n = parseInt(core.getInput('n')) || undefined;
-    const stream = core.getInput('echo') ? Boolean(core.getInput('stream')) : undefined;
-    const logprobs = parseInt(core.getInput('logprobs')) || undefined;
-    const echo = core.getInput('echo') ? Boolean(core.getInput('echo')) : undefined;
-    const stop = core.getInput('stop');
-    const presence_penalty = parseInt(core.getInput('presence_penalty')) || undefined;
-    const frequency_penalty = parseInt(core.getInput('frequency_penalty')) || undefined;
-    const best_of = parseInt(core.getInput('best_of')) || undefined;
-    const logit_bias = JSON.parse(core.getInput('logit_bias')) || undefined;
+    const payload = {
+        prompt: core.getInput('prompt'),
+        max_tokens: parseInt(core.getInput('max_tokens')) || undefined,
+        temperature: parseInt(core.getInput('temperature')) || undefined,
+        top_p: parseInt(core.getInput('top_p')) || undefined,
+        n: parseInt(core.getInput('n')) || undefined,
+        stream: core.getInput('echo') ? Boolean(core.getInput('stream')) : undefined,
+        logprobs: parseInt(core.getInput('logprobs')) || undefined,
+        echo: core.getInput('echo') ? Boolean(core.getInput('echo')) : undefined,
+        stop: core.getInput('stop'),
+        presence_penalty: parseInt(core.getInput('presence_penalty')) || undefined,
+        frequency_penalty: parseInt(core.getInput('frequency_penalty')) || undefined,
+        best_of: parseInt(core.getInput('best_of')) || undefined,
+        logit_bias: JSON.parse(core.getInput('logit_bias')) || undefined,
+    };
     if (!prompt) {
         core.setFailed('No prompt provided');
         return;
@@ -60,21 +62,6 @@ const run = () => __awaiter(void 0, void 0, void 0, function* () {
         apiKey: process.env.OPENAI_API_KEY,
     });
     const openai = new openai_1.OpenAIApi(configuration);
-    const payload = {
-        prompt,
-        max_tokens,
-        temperature,
-        top_p,
-        n,
-        stream,
-        logprobs,
-        echo,
-        stop,
-        presence_penalty,
-        frequency_penalty,
-        best_of,
-        logit_bias
-    };
     core.info(`Request using engineId: ${engineId}
 ${JSON.stringify(payload, null, 2)}`);
     openai.createCompletion(engineId, payload).then((response) => {
