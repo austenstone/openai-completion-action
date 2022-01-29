@@ -54,13 +54,12 @@ const run = () => __awaiter(void 0, void 0, void 0, function* () {
         best_of: parseInt(core.getInput('best_of')) || undefined,
         logit_bias: JSON.parse(core.getInput('logit_bias')) || undefined,
     };
+    console.log('payload', payload);
     if (!prompt) {
         core.setFailed('No prompt provided');
         return;
     }
-    const configuration = new openai_1.Configuration({
-        apiKey: process.env.OPENAI_API_KEY,
-    });
+    const configuration = new openai_1.Configuration({ apiKey: process.env.OPENAI_API_KEY });
     const openai = new openai_1.OpenAIApi(configuration);
     core.info(`Request using engineId: ${engineId}
 ${JSON.stringify(payload, null, 2)}`);
@@ -9073,7 +9072,7 @@ module.exports = JSON.parse('{"application/1d-interleaved-parityfec":{"source":"
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_args":[["openai@2.0.2","C:\\\\Users\\\\auste\\\\source\\\\openai-completion-action"]],"_from":"openai@2.0.2","_id":"openai@2.0.2","_inBundle":false,"_integrity":"sha512-JyvCwi3/yj8OTm7Qbj3RGj8KpCzOQ+Vq6Sn3MqaqFmhGQxTW0LS98YPLwDqK6MRPVGdbx3++cjXDzQ+kqaB6uA==","_location":"/openai","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"openai@2.0.2","name":"openai","escapedName":"openai","rawSpec":"2.0.2","saveSpec":null,"fetchSpec":"2.0.2"},"_requiredBy":["/"],"_resolved":"https://registry.npmjs.org/openai/-/openai-2.0.2.tgz","_spec":"2.0.2","_where":"C:\\\\Users\\\\auste\\\\source\\\\openai-completion-action","author":{"name":"OpenAI"},"bugs":{"url":"https://github.com/openai/openai-node/issues"},"dependencies":{"axios":"^0.25.0","form-data":"^4.0.0"},"description":"Node.js library for the OpenAI API","devDependencies":{"@types/node":"^12.11.5","typescript":"^3.6.4"},"homepage":"https://github.com/openai/openai-node#readme","keywords":["openai","open","ai","gpt-3","gpt3"],"license":"MIT","main":"./dist/index.js","name":"openai","repository":{"type":"git","url":"git+ssh://git@github.com/openai/openai-node.git"},"scripts":{"build":"tsc --outDir dist/"},"types":"./dist/index.d.ts","version":"2.0.2"}');
+module.exports = JSON.parse('{"_from":"openai@^2.0.2","_id":"openai@2.0.2","_inBundle":false,"_integrity":"sha512-JyvCwi3/yj8OTm7Qbj3RGj8KpCzOQ+Vq6Sn3MqaqFmhGQxTW0LS98YPLwDqK6MRPVGdbx3++cjXDzQ+kqaB6uA==","_location":"/openai","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"openai@^2.0.2","name":"openai","escapedName":"openai","rawSpec":"^2.0.2","saveSpec":null,"fetchSpec":"^2.0.2"},"_requiredBy":["#USER","/"],"_resolved":"https://registry.npmjs.org/openai/-/openai-2.0.2.tgz","_shasum":"c0508552e06c269ffcb503a2e204a924b17d2e9d","_spec":"openai@^2.0.2","_where":"C:\\\\Users\\\\auste\\\\source\\\\openai-completion-action","author":{"name":"OpenAI"},"bugs":{"url":"https://github.com/openai/openai-node/issues"},"bundleDependencies":false,"dependencies":{"axios":"^0.25.0","form-data":"^4.0.0"},"deprecated":false,"description":"Node.js library for the OpenAI API","devDependencies":{"@types/node":"^12.11.5","typescript":"^3.6.4"},"homepage":"https://github.com/openai/openai-node#readme","keywords":["openai","open","ai","gpt-3","gpt3"],"license":"MIT","main":"./dist/index.js","name":"openai","repository":{"type":"git","url":"git+ssh://git@github.com/openai/openai-node.git"},"scripts":{"build":"tsc --outDir dist/"},"types":"./dist/index.d.ts","version":"2.0.2"}');
 
 /***/ })
 
