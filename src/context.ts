@@ -19,6 +19,8 @@ const run = async (): Promise<void> => {
     logit_bias: JSON.parse(core.getInput('logit_bias')) || undefined,
   };
 
+  console.log('payload', payload);
+
   if (!prompt) {
     core.setFailed('No prompt provided');
     return;
