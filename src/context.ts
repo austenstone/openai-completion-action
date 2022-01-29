@@ -25,7 +25,7 @@ const run = async (): Promise<void> => {
     })(core.getInput('logit_bias')),
   };
 
-  if (!prompt) {
+  if (!payload.prompt) {
     core.setFailed('No prompt provided');
     return;
   }

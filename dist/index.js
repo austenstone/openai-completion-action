@@ -61,7 +61,7 @@ const run = () => __awaiter(void 0, void 0, void 0, function* () {
             }
         })(core.getInput('logit_bias')),
     };
-    if (!prompt) {
+    if (!payload.prompt) {
         core.setFailed('No prompt provided');
         return;
     }
