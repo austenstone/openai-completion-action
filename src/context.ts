@@ -1,9 +1,5 @@
 import * as core from '@actions/core';
-import {
-  Configuration,
-  CreateCompletionRequest,
-  OpenAIApi,
-} from 'openai';
+import { Configuration, CreateCompletionRequest, OpenAIApi } from 'openai';
 
 const run = async (): Promise<void> => {
   const engineId = core.getInput('engineId') || 'text-davinci-001';
@@ -28,18 +24,8 @@ const run = async (): Promise<void> => {
     return;
   }
 
-  const configuration = new Configuration({
-    apiKey: process.env.OPENAI_API_KEY,
-    // organization: 'string',
-    // username: 'string',
-    // password: 'string',
-    // accessToken: 'string',
-    // basePath: 'string',
-    // baseOptions: {},
-    // formDataCtor: {}
-  });
+  const configuration = new Configuration({ apiKey: process.env.OPENAI_API_KEY });
   const openai = new OpenAIApi(configuration);
-
 
   core.info(`Request using engineId: ${engineId}
 ${JSON.stringify(payload, null, 2)}`);
