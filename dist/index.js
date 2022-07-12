@@ -38,17 +38,17 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(2186));
 const openai_1 = __nccwpck_require__(9211);
 const run = () => __awaiter(void 0, void 0, void 0, function* () {
-    const engineId = core.getInput('engineId') || 'text-davinci-001';
+    const engineId = core.getInput('engineId') || 'text-davinci-002';
     const payload = {
         prompt: core.getInput('prompt'),
         max_tokens: parseInt(core.getInput('max_tokens')) || undefined,
         temperature: parseInt(core.getInput('temperature')) || undefined,
         top_p: parseInt(core.getInput('top_p')) || undefined,
         n: parseInt(core.getInput('n')) || undefined,
-        stream: core.getInput('echo') ? Boolean(core.getInput('stream')) : undefined,
+        stream: core.getInput('stream') ? Boolean(core.getInput('stream')) : undefined,
         logprobs: parseInt(core.getInput('logprobs')) || undefined,
         echo: core.getInput('echo').length < 1 ? Boolean(core.getInput('echo')) : undefined,
-        stop: core.getInput('stop'),
+        stop: core.getInput('stop') || undefined,
         presence_penalty: parseInt(core.getInput('presence_penalty')) || undefined,
         frequency_penalty: parseInt(core.getInput('frequency_penalty')) || undefined,
         best_of: parseInt(core.getInput('best_of')) || undefined,
@@ -67,8 +67,7 @@ const run = () => __awaiter(void 0, void 0, void 0, function* () {
     }
     const configuration = new openai_1.Configuration({ apiKey: process.env.OPENAI_API_KEY });
     const openai = new openai_1.OpenAIApi(configuration);
-    core.info(`Request using engineId: ${engineId}
-${JSON.stringify(payload, null, 2)}`);
+    core.info(`Request using engineId: ${engineId}\n${JSON.stringify(payload, null, 2)}`);
     openai.createCompletion(engineId, payload).then((response) => {
         var _a;
         const data = response.data;
@@ -77,8 +76,7 @@ ${JSON.stringify(payload, null, 2)}`);
             choice.text = (_a = choice.text) === null || _a === void 0 ? void 0 : _a.replace(/(?:\r\n|\r|\n)/g, '');
             return choice;
         });
-        core.info(`Response:
-${JSON.stringify(data, null, 2)}`);
+        core.info(`Response:\n${JSON.stringify(data, null, 2)}`);
         core.setOutput('response', JSON.stringify(data));
     }).catch((err) => {
         core.setFailed(err);
