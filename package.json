@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/austenstone/openai-completion-action#readme",
   "dependencies": {
-    "@actions/core": "^1.6.0",
+    "@actions/core": "^1.9.1",
     "openai": "^2.0.2"
   },
   "devDependencies": {
