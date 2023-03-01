@@ -2,8 +2,8 @@ import * as core from '@actions/core';
 import { Configuration, CreateCompletionRequest, OpenAIApi } from 'openai';
 
 const run = async (): Promise<void> => {
-  const engineId = core.getInput('engineId') || 'text-davinci-002';
   const payload: CreateCompletionRequest = {
+    model: core.getInput('engineId') || 'text-davinci-002',
     prompt: core.getInput('prompt'),
     max_tokens: parseInt(core.getInput('max_tokens')) || undefined,
     temperature: parseInt(core.getInput('temperature')) || undefined,
@@ -33,9 +33,9 @@ const run = async (): Promise<void> => {
   const configuration = new Configuration({ apiKey: process.env.OPENAI_API_KEY });
   const openai = new OpenAIApi(configuration);
 
-  core.info(`Request using engineId: ${engineId}\n${JSON.stringify(payload, null, 2)}`);
+  core.info(`Request using model: ${payload.model}\n${JSON.stringify(payload, null, 2)}`);
 
-  openai.createCompletion(engineId, payload).then((response) => {
+  openai.createCompletion(payload).then((response) => {
     const data = response.data;
     data.choices = data.choices?.map((choice) => {
       choice.text = choice.text?.replace(/(?:\r\n|\r|\n)/g, '');
