@@ -3,7 +3,7 @@ import { Configuration, CreateCompletionRequest, OpenAIApi } from 'openai';
 
 const run = async (): Promise<void> => {
   const payload: CreateCompletionRequest = {
-    model: core.getInput('engineId') || 'text-davinci-002',
+    model: core.getInput('engineId') || 'gpt-3.5-turbo',
     prompt: core.getInput('prompt'),
     max_tokens: parseInt(core.getInput('max_tokens')) || undefined,
     temperature: parseInt(core.getInput('temperature')) || undefined,

@@ -43,7 +43,7 @@ const core = __importStar(__nccwpck_require__(2186));
 const openai_1 = __nccwpck_require__(9211);
 const run = () => __awaiter(void 0, void 0, void 0, function* () {
     const payload = {
-        model: core.getInput('engineId') || 'text-davinci-002',
+        model: core.getInput('engineId') || 'gpt-3.5-turbo',
         prompt: core.getInput('prompt'),
         max_tokens: parseInt(core.getInput('max_tokens')) || undefined,
         temperature: parseInt(core.getInput('temperature')) || undefined,
