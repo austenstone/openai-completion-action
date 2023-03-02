@@ -11,7 +11,7 @@ The action requires:
 
 To see all other inputs visit [OpenAI Api Reference - Completions](https://beta.openai.com/docs/api-reference/completions/create)
 
-The output of the action is a JSON string that can be parsed. The resulting JSON object will contain the response. Use `.choices[0].text` to get the first choice's text.
+The output of the action is a JSON string that can be parsed. The resulting JSON object will contain the response. Use `.choices[0].message.content` to get the first choice's text.
 
 This example is a manual dispatch action that takes the prompt as input and prints out the response:
 ```yml
@@ -40,7 +40,7 @@ jobs:
       - uses: actions/github-script@v5
         name: Print the response text
         with:
-          script:  console.log(JSON.parse('${{ steps.openai_completion.outputs.response }}').choices[0].text)
+          script:  console.log(JSON.parse('${{ steps.openai_completion.outputs.response }}').choices[0].message.content)
 ```
 
 ## Examples
@@ -74,7 +74,7 @@ jobs:
         with:
           debug: true,
           script: |
-            const text = JSON.parse('${{ steps.openai_completion.outputs.response }}').choices[0].text
+            const text = JSON.parse('${{ steps.openai_completion.outputs.response }}').choices[0].message.content
             await github.rest.issues.addLabels({
               owner: context.repo.owner,
               repo: context.repo.repo,

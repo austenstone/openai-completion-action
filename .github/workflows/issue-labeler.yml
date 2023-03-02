@@ -23,7 +23,7 @@ jobs:
         with:
           debug: true,
           script: |
-            const text = JSON.parse('${{ steps.openai_completion.outputs.response }}').choices[0].text
+            const text = JSON.parse('${{ steps.openai_completion.outputs.response }}').choices[0].message.content
             await github.rest.issues.addLabels({
               owner: context.repo.owner,
               repo: context.repo.repo,
