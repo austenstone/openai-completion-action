@@ -18,7 +18,7 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
-      - uses: actions/github-script@v5
+      - uses: actions/github-script@v6
         name: Print the response text
         with:
           debug: true,
