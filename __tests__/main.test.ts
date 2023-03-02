@@ -5,6 +5,7 @@ import { test } from '@jest/globals';
 
 test('test run', () => {
   process.env['INPUT_prompt'] = 'Can pigs fly?';
+  process.env['INPUT_model'] = 'gpt-3.5-turbo';
   const np = process.execPath;
   const ip = path.join(__dirname, '..', 'dist', 'index.js');
   const options: cp.ExecFileSyncOptions = {

@@ -10910,32 +10910,74 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+exports.getInputs = void 0;
 const core = __importStar(__nccwpck_require__(2186));
 const openai_1 = __nccwpck_require__(9211);
-const run = () => __awaiter(void 0, void 0, void 0, function* () {
-    const prompt = core.getInput('prompt');
-    if (!prompt) {
-        core.setFailed('No prompt provided');
-        return;
+function getInputs() {
+    const result = {};
+    result.model = core.getInput('model');
+    result.prompt = core.getInput('prompt');
+    if (!result.prompt) {
+        core.setFailed('No prompt input provided');
+        throw new Error('No prompt input provided');
     }
-    const payload = {
-        model: core.getInput('engineId') || 'gpt-3.5-turbo',
-        messages: [{
-                role: 'user',
-                content: prompt
-            }]
-    };
+    const temperature = core.getInput('temperature');
+    if (temperature) {
+        result.temperature = Number(temperature);
+    }
+    const top_p = core.getInput('top_p');
+    if (top_p) {
+        result.top_p = Number(top_p);
+    }
+    const n = core.getInput('n');
+    if (n) {
+        result.n = Number(n);
+    }
+    const steam = core.getInput('stream');
+    if (steam) {
+        result.stream = Boolean(steam);
+    }
+    const stop = core.getInput('stop');
+    if (stop) {
+        result.stop = stop;
+    }
+    const max_tokens = core.getInput('max_tokens');
+    if (max_tokens) {
+        result.max_tokens = Number(max_tokens);
+    }
+    const presence_penalty = core.getInput('presence_penalty');
+    if (presence_penalty) {
+        result.presence_penalty = Number(presence_penalty);
+    }
+    const frequency_penalty = core.getInput('frequency_penalty');
+    if (frequency_penalty) {
+        result.frequency_penalty = Number(frequency_penalty);
+    }
+    const logit_basis = core.getInput('logit_bias');
+    if (logit_basis) {
+        result.logit_bias = JSON.parse(logit_basis);
+    }
+    const user = core.getInput('user');
+    if (user) {
+        result.user = user;
+    }
+    return result;
+}
+exports.getInputs = getInputs;
+const run = () => __awaiter(void 0, void 0, void 0, function* () {
+    const input = getInputs();
+    input.messages = [{
+            role: 'user',
+            content: input.prompt || '',
+        }];
+    delete input.prompt;
+    const payload = input;
     const configuration = new openai_1.Configuration({ apiKey: process.env.OPENAI_API_KEY });
     const openai = new openai_1.OpenAIApi(configuration);
     core.info(`Request using model: ${payload.model}\n${JSON.stringify(payload, null, 2)}`);
-    try {
-        const response = yield openai.createChatCompletion(payload);
-        const data = response.data;
-        core.setOutput('response', JSON.stringify(data));
-    }
-    catch (error) {
-        core.setFailed(JSON.stringify(error));
-    }
+    const response = yield openai.createChatCompletion(payload);
+    const data = response.data;
+    core.setOutput('response', JSON.stringify(data));
 });
 exports["default"] = run;
 
