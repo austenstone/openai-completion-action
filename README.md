@@ -9,7 +9,7 @@ The action requires:
 - Input called `prompt` which is a string that the model will use to generate a completion.
 - [OpenAI API Key](https://beta.openai.com/account/api-keys) as an enviroment variable called `OPENAI_API_KEY`
 
-To see all other inputs visit [OpenAI Api Reference - Completions](https://beta.openai.com/docs/api-reference/completions/create)
+To see all other inputs visit [OpenAI Api Reference - Chat Completions](https://platform.openai.com/docs/guides/chat)
 
 The output of the action is a JSON string that can be parsed. The resulting JSON object will contain the response. Use `.choices[0].message.content` to get the first choice's text.
 
