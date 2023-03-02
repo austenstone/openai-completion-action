@@ -1,0 +1,28 @@
+trigger: gpt
+title: Chat GPT Completion
+description: Creates a completion for the chat message
+surfaces:
+  - issue
+  - pull_request
+steps:
+  - type: form
+    style: embedded
+    actions:
+      submit: Send
+      cancel: Cancel
+    body:         
+      - type: textarea
+        validations:
+          required: true
+        attributes:
+          label: Prompt
+          id: prompt
+          description: "The prompt to generate completions for."
+          placeholder: What is the meaning of life?
+          
+  - type: repository_dispatch
+    eventType: slash-completion
+
+  # - type: fill 
+  #   template: |
+  #     **Added Words:** {{ data.words }}
