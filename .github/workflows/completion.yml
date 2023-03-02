@@ -22,7 +22,7 @@ jobs:
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
-      - uses: actions/github-script@v5
+      - uses: actions/github-script@v6
         name: Print the response text
         with:
           script: core.notice('${{github.event.inputs.prompt}}' + '\n\n' + JSON.parse(${{ toJSON(steps.openai_completion.outputs.response) }}).choices[0].message.content)
