@@ -1,111 +1,5 @@
-require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
+/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
-
-/***/ 3842:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
-
-"use strict";
-
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-const core = __importStar(__nccwpck_require__(2186));
-const openai_1 = __nccwpck_require__(9211);
-const run = () => __awaiter(void 0, void 0, void 0, function* () {
-    const payload = {
-        model: core.getInput('engineId') || 'gpt-3.5-turbo',
-        prompt: core.getInput('prompt'),
-        max_tokens: parseInt(core.getInput('max_tokens')) || undefined,
-        temperature: parseInt(core.getInput('temperature')) || undefined,
-        top_p: parseInt(core.getInput('top_p')) || undefined,
-        n: parseInt(core.getInput('n')) || undefined,
-        stream: core.getInput('stream') ? Boolean(core.getInput('stream')) : undefined,
-        logprobs: parseInt(core.getInput('logprobs')) || undefined,
-        echo: core.getInput('echo').length < 1 ? Boolean(core.getInput('echo')) : undefined,
-        stop: core.getInput('stop') || undefined,
-        presence_penalty: parseInt(core.getInput('presence_penalty')) || undefined,
-        frequency_penalty: parseInt(core.getInput('frequency_penalty')) || undefined,
-        best_of: parseInt(core.getInput('best_of')) || undefined,
-        logit_bias: ((lb) => {
-            try {
-                return JSON.parse(lb);
-            }
-            catch (e) {
-                return undefined;
-            }
-        })(core.getInput('logit_bias')),
-    };
-    if (!payload.prompt) {
-        core.setFailed('No prompt provided');
-        return;
-    }
-    const configuration = new openai_1.Configuration({ apiKey: process.env.OPENAI_API_KEY });
-    const openai = new openai_1.OpenAIApi(configuration);
-    core.info(`Request using model: ${payload.model}\n${JSON.stringify(payload, null, 2)}`);
-    openai.createCompletion(payload).then((response) => {
-        var _a;
-        const data = response.data;
-        data.choices = (_a = data.choices) === null || _a === void 0 ? void 0 : _a.map((choice) => {
-            var _a;
-            choice.text = (_a = choice.text) === null || _a === void 0 ? void 0 : _a.replace(/(?:\r\n|\r|\n)/g, '');
-            return choice;
-        });
-        core.info(`Response:\n${JSON.stringify(data, null, 2)}`);
-        core.setOutput('response', JSON.stringify(data));
-    }).catch((err) => {
-        core.setFailed(err);
-        return;
-    });
-});
-exports["default"] = run;
-
-
-/***/ }),
-
-/***/ 3109:
-/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
-
-"use strict";
-
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-const context_1 = __importDefault(__nccwpck_require__(3842));
-(0, context_1.default)();
-
-
-/***/ }),
 
 /***/ 7351:
 /***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
@@ -10978,6 +10872,91 @@ exports["default"] = _default;
 
 /***/ }),
 
+/***/ 8954:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const core = __importStar(__nccwpck_require__(2186));
+const openai_1 = __nccwpck_require__(9211);
+const run = () => __awaiter(void 0, void 0, void 0, function* () {
+    const prompt = core.getInput('prompt');
+    if (!prompt) {
+        core.setFailed('No prompt provided');
+        return;
+    }
+    const payload = {
+        model: core.getInput('engineId') || 'gpt-3.5-turbo',
+        messages: [{
+                role: 'user',
+                content: prompt
+            }]
+    };
+    const configuration = new openai_1.Configuration({ apiKey: process.env.OPENAI_API_KEY });
+    const openai = new openai_1.OpenAIApi(configuration);
+    core.info(`Request using model: ${payload.model}\n${JSON.stringify(payload, null, 2)}`);
+    try {
+        const response = yield openai.createChatCompletion(payload);
+        const data = response.data;
+        core.setOutput('response', JSON.stringify(data));
+    }
+    catch (error) {
+        core.setFailed(JSON.stringify(error));
+    }
+});
+exports["default"] = run;
+
+
+/***/ }),
+
+/***/ 6144:
+/***/ (function(__unused_webpack_module, exports, __nccwpck_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const context_1 = __importDefault(__nccwpck_require__(8954));
+(0, context_1.default)();
+
+
+/***/ }),
+
 /***/ 9491:
 /***/ ((module) => {
 
@@ -11156,9 +11135,8 @@ module.exports = JSON.parse('{"name":"openai","version":"3.2.1","description":"N
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = __nccwpck_require__(3109);
+/******/ 	var __webpack_exports__ = __nccwpck_require__(6144);
 /******/ 	module.exports = __webpack_exports__;
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=index.js.map
