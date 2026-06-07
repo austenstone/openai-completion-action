@@ -1,9 +1,11 @@
 import * as core from '@actions/core';
-import { Configuration, CreateChatCompletionRequest, OpenAIApi } from 'openai';
+import OpenAI from 'openai';
+import type { ChatCompletionCreateParamsNonStreaming } from 'openai/resources/chat/completions';
 
-interface Input extends CreateChatCompletionRequest {
-  token: string;
+interface Input extends Partial<ChatCompletionCreateParamsNonStreaming> {
+  token?: string;
   prompt?: string;
+  model: string;
 }
 
 export function getInputs(): Input {
@@ -28,7 +30,7 @@ export function getInputs(): Input {
   }
   const steam = core.getInput('stream');
   if (steam) {
-    result.stream = Boolean(steam);
+    result.stream = false;
   }
   const stop = core.getInput('stop');
   if (stop) {
@@ -64,21 +66,21 @@ const run = async (): Promise<void> => {
     content: input.prompt || '',
   }];
   delete input.prompt;
-  const payload: CreateChatCompletionRequest = input;
 
-  const configuration = new Configuration({ apiKey: process.env.OPENAI_API_KEY });
-  const openai = new OpenAIApi(configuration);
+  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
-  core.info(`Request using model: ${payload.model}\n${JSON.stringify(payload, null, 2)}`);
-  const response = await openai.createChatCompletion(payload);
-  const data = response.data;
-  data.choices = data.choices?.map((choice) => {
+  core.info(`Request using model: ${input.model}\n${JSON.stringify(input, null, 2)}`);
+  const response = await openai.chat.completions.create({
+    ...input,
+    stream: false,
+  } as ChatCompletionCreateParamsNonStreaming);
+  response.choices = response.choices?.map((choice) => {
     if (choice.message?.content) {
       choice.message.content = choice.message?.content?.replace(/(?:\r\n|\r|\n)/g, '');
     }
     return choice;
   });
-  core.setOutput('response', JSON.stringify(data));
+  core.setOutput('response', JSON.stringify(response));
 };
 
 export default run;
